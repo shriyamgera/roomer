@@ -23,7 +23,6 @@ app.use('/wishlist', wishlist)
 
 app.get('/', (req, res)=>{
     res.send("Hello world")
-    res.json({message:'Hello World'})
 })
 
 app.listen(PORT, ()=>{
