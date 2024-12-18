@@ -5,7 +5,8 @@ import api from '../config/api'
 import { toast } from 'react-toastify'
 
 const SignUp = () => {
-    const labelClassName = 'text-start mt-2'
+    const labelClassName = 'text-start mt-3 font-bold mb-1 text-blue-950'
+    const inputClass = 'bg-transparent outline-none border-b border-blue-950'
     const [signUpDetails, setsignUpDetails] = useState({})
     const navigate = useNavigate()
 
@@ -55,22 +56,22 @@ const SignUp = () => {
         
     }
   return (
-    <>
+    <div className='h-[100vh]'>
         <Navbar/>
         <div className='flex flex-col items-center'>
-        <h1 className='text-5xl font-bold'>SignUp</h1>
-        <form className='flex flex-col bg-amber-200 w-fit p-5 mt-10'>
+        <h1 className='text-5xl font-bold text-blue-950 mt-5'>SignUp</h1>
+        <form className='flex flex-col bg-blue-200 w-fit p-5 mt-10 glassmorphism rounded shadow-lg my-5'>
             <label className={labelClassName}>Name</label>
-            <input autoFocus type='text' placeholder='Enter Name' name='name' onChange={handleChange} value={signUpDetails.name || ''}></input>
+            <input autoFocus type='text' placeholder='Enter Name' name='name' onChange={handleChange} value={signUpDetails.name || ''} className={inputClass}></input>
             <label className={labelClassName}>Email</label>
-            <input type="email" placeholder='Enter Email' name='email' onChange={handleChange} value={signUpDetails.email || ''}></input>
+            <input type="email" placeholder='Enter Email' name='email' onChange={handleChange} value={signUpDetails.email || ''} className={inputClass}></input>
             <label className={labelClassName}>Password</label>
-            <input type='password' placeholder='Enter Password' name='password' onChange={handleChange} value={signUpDetails.password || ''}></input>
-            <button type='submit' className='mt-5 bg-green-300' onClick={handleSubmit}>Create Account</button>
+            <input type='password' placeholder='Enter Password' name='password' onChange={handleChange} value={signUpDetails.password || ''} className={inputClass}></input>
+            <button type='submit' className='mt-5 bg-blue-900 text-white p-2' onClick={handleSubmit}>Create Account</button>
             <p className='mt-5'>Already have an account? <span className='underline'><Link to={'/login'}>Login</Link></span></p>
         </form>
         </div>
-    </>
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Cards from './Cards'
 import api from '../config/api'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,20 +10,18 @@ const CardsContainer = () => {
 
     const dispatch = useDispatch()
 
-    const fetchAccomodations = async()=>{
+    const fetchAccomodations = useCallback(async()=>{
         try {
             const data = await fetch(api.accommodation)
             const res = await data.json()
             dispatch(insertAccommodations(res))
-            console.log(res);
-            
             setallData(res)
             setFilteredData(res)
         } catch (error) {
             console.error(error)
         }
         
-    }
+    },[dispatch])
 
     useEffect(() => {
       fetchAccomodations()
@@ -42,7 +40,7 @@ const CardsContainer = () => {
     },[searchText, filter])
     
   return (
-    <div className='m-10 p-10'>
+    <div className='md:m-10 md:p-10'>
         <div className='flex gap-10 padding-[20px] flex-wrap justify-center'>
             {filterdData?.map((item)=>{
                 return (

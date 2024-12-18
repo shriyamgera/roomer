@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken"
+import env from 'dotenv'
+env.config()
 
 const ensureAuthenticated = (req,res,next)=>{
     const auth = req.headers['authorization']
@@ -6,7 +8,7 @@ const ensureAuthenticated = (req,res,next)=>{
         return res.status(403).json({message:"Token not found", success:false})
     }
     try {
-        const decode = jwt.verify(auth, 'jwt_secret1234')
+        const decode = jwt.verify(auth, process.env.JWT_SECRET)
         req.user = decode
         next()
     } catch (error) {

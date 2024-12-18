@@ -6,9 +6,12 @@ import auth from './routes/auth.js'
 import bodyParser from 'body-parser'
 import wishlist from './routes/wishlist.js'
 import validateToken from './routes/validateToken.js'
+import env from 'dotenv'
+
+env.config()
 const app = express()
 connectDB()
-const PORT = 4000
+const PORT = process.env.PORT || 4000
 
 
 app.use(cors())

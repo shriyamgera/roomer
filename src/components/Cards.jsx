@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { FaHeart, FaMale, FaFemale, } from "react-icons/fa";
 import api from '../config/api';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ const Cards = ({cardItem}) => {
     }, [wishlist])
     const authenticated = useSelector(state=> state.user.authenticated)
     
-    const handleWishlist = async(e) => {
+    const handleWishlist = useCallback(async(e) => {
         e.stopPropagation()
             try {
                 const apiData = await fetch(api.wishlist,
@@ -38,10 +38,7 @@ const Cards = ({cardItem}) => {
                 )
                 const res = await apiData.json()
                 if(res?.success){
-                    console.log("ye");
                     console.log(res?.wishlist);
-                    
-                    
                     dispatch(insertWishlist(res?.wishlist))
                     toast.success(res?.message)
                 }else{
@@ -52,9 +49,9 @@ const Cards = ({cardItem}) => {
                 console.error(error)
             }
         
-    }
+    },[_id,dispatch])
 
-    const handleCardClick =()=>{
+    const handleCardClick =useCallback(()=>{
         if(authenticated){
             console.log(cardItem);
             
@@ -65,19 +62,19 @@ const Cards = ({cardItem}) => {
                 hideProgressBar:true
             })
         }
-    }
+    },[authenticated, cardItem, navigate, _id, type])
     
   return (
-    <div className='w-[30%] h-[250px] bg-cover bg-center border shadow-lg rounded flex flex-col justify-between hover:scale-110 duration-150' 
+    <div className='w-[70%] md:w-[30%] lg:w-[20%] lg:h-[250px] h-[300px] md:h-[220px] bg-cover bg-center rounded shadow-lg flex flex-col justify-between hover:scale-110 duration-150 text-white' 
     style={{backgroundImage:`url(${img})`}}
     onClick={handleCardClick}
     >
 
-        <div className='w-full h-[15%] bg-amber-300 flex justify-between p-2 items-center'>
+        <div className='w-full h-[15%] bg-blue-800 flex justify-between p-2 items-center rounded glassmorphism'>
             <div className='flex gap-3 items-center'>
         <div className='flex'>
-                {gender.includes('male') && <FaMale/>} 
-                {gender.includes('female') && <FaFemale/>}
+                {gender.includes('Male') && <FaMale className='text-blue-900 text-xl'/>} 
+                {gender.includes('Female') && <FaFemale className='text-pink-400 text-xl'/>}
             </div>
             <div>
                 {type}
@@ -87,7 +84,7 @@ const Cards = ({cardItem}) => {
                 <FaHeart className='hover:scale-150 duration-150' onClick={handleWishlist} fill={isWishlisted ? "red" : "white"}/>
             </div>
         </div>
-        <div className='w-full h-[30%] bg-amber-300 flex items-center justify-center'>
+        <div className='w-full h-[30%] bg-blue-800 flex items-center justify-center rounded glassmorphism'>
             {name}
             <br/>
             {location}

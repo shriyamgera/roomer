@@ -12,8 +12,8 @@ const Navbar = () => {
     const authenticated = useSelector(state=> state.user.authenticated)
     
   return (
-    <nav className='flex justify-between'>
-        <Link to='/'>
+    <nav className='flex justify-between bg-blue-900 p-3 text-white'>
+        <Link to='/' className='text-2xl font-bold'>
             Roomer
         </Link>
         <div>

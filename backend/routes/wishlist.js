@@ -3,11 +3,13 @@ const router = express.Router()
 import User from '../model/user.js'
 import ensureAuthenticated from '../middlewares/Auth.js'
 import jwt from 'jsonwebtoken'
+import env from 'dotenv'
+env.config()
 
 router.post('/',ensureAuthenticated, async(req, res)=>{
     const {accommodationID} = req.body
     const token = req.headers['authorization']
-    const decode = jwt.verify(token, 'jwt_secret1234')
+    const decode = jwt.verify(token, process.env.JWT_SECRET)
     const email = decode.email
     const user = await User.findOne({email})
 

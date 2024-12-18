@@ -8,8 +8,6 @@ import { FaWifi, FaSoap, FaParking, FaSnowflake, FaUtensils, FaDumbbell, FaBook,
 const AccommodationDetails = () => {
   const location = useLocation()
   const accommodation = location.state
-  console.log(JSON.stringify(accommodation))
-
   const iconClassName = 'text-[60px] '
 
   const amenityIcons = {
@@ -28,37 +26,82 @@ const AccommodationDetails = () => {
   
 
   return (
-    <div>
+    <div className='text-blue-950'>
       <Navbar />
-      <div className='flex gap-10 px-20 py-10'>
+      <div className='flex gap-10 px-20 py-10 flex-wrap justify-center'>
         <div className='flex items-center'>
           <img
             src={`/${accommodation.img}`}
             alt={`${accommodation.type} image`}
-            className='max:h-96 h-64 rounded shadow-lg'
+            className='rounded shadow-lg md:w-[600px] h-auto'
           />
         </div>
 
-        <div className='flex-1 flex flex-col gap-5 p-5 border rounded shadow-lg'>
+        <div className='flex-1 flex flex-col gap-5 p-5 border shadow-lg rounded'>
           <div>
-            <h1 className='text-4xl font-bold'>{accommodation.name}</h1>
-            <h2 className='text-xl'>{accommodation.location}</h2>
+            <h1 className='md:text-4xl text-2xl font-bold'>{accommodation.name}</h1>
+            <h2 className='md:text-xl  text-lg'>{accommodation.location}</h2>
           </div>
-          <div className='flex flex-col items-start gap-2'>
-            <p>Type: {accommodation.type}</p>
-            <p>For: {accommodation.gender.join(', ')}</p>
+          <div className='flex flex-col items-start gap-2 md:text-3xl text-xl text-blue-500 font-bold'>
+            <p><span className='font-bold mr-2 text-blue-950 '>Type:</span> {accommodation.type}</p>
+            <p><span className='font-bold mr-2 text-blue-950'>For:</span> {accommodation.gender.join(', ')}</p>
             <p>
-              Rent: ₹{accommodation.rentAmount} {accommodation.paymentFrequency}
+            <span className='font-bold mr-2 text-blue-950'>Rent:</span> ₹{accommodation.rentAmount} {accommodation.paymentFrequency}
             </p>
-            <p>Address: {accommodation.address}</p>
+            <p><span className='font-bold mr-2 text-blue-950'>Address:</span> {accommodation.address}</p>
             <p>
-              Contact Numbers: {accommodation.contactNumbers.join(', ')}
+            <span className='font-bold mr-2 text-blue-950'>Contact Numbers:</span> {accommodation.contactNumbers.join(', ')}
             </p>
           </div>
         </div>
       </div>
 
+
       <div className='px-20 py-5'>
+        <div className='p-5 border rounded shadow-lg'>
+          <h3 className='text-2xl font-bold mb-10'>Amenities</h3>
+          <div className='flex items-center justify-center gap-10 flex-wrap'>
+            {accommodation.amenities && accommodation.amenities.length > 0 ? (
+              accommodation.amenities.map((amenity, index) => (
+                <div key={index} className='flex flex-col items-center'>
+                <p>{amenityIcons[amenity] || <FaShieldAlt />}</p>
+                <p>{amenity}</p>
+              </div>
+              ))
+            ) : (
+              <p>No amenities listed</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+    <div className='px-20 py-5 flex items-stretch justify-center gap-5'>
+      <div className=' flex-1'>
+        <div className='p-5 border rounded shadow-lg h-full'>
+          <h3 className='text-2xl font-bold mb-2'>Food Details</h3>
+          <p>Included: {accommodation.food?.included ? 'Yes' : 'No'}</p>
+          {accommodation.food?.included && (
+            <>
+              <p>Type: {accommodation.food.type}</p>
+              <p>Meals per Day: {accommodation.food.mealFrequency}</p>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className='flex-1'>
+        <div className='p-5 border rounded shadow-lg  h-full'>
+          <h3 className='text-2xl font-bold mb-2'>Room Details</h3>
+          <p>Seater: {accommodation.roomDetails?.seater}</p>
+          <p>
+            Attached Bathroom:{' '}
+            {accommodation.roomDetails?.attachedBathroom ? 'Yes' : 'No'}
+          </p>
+        </div>
+      </div>
+      </div>
+
+      <div className='px-1'>
         <div className='p-5 border rounded shadow-lg'>
           <h3 className='text-2xl font-bold mb-5'>Reviews</h3>
           {accommodation.reviews && accommodation.reviews.length > 0 ? (
@@ -89,49 +132,8 @@ const AccommodationDetails = () => {
           )}
         </div>
       </div>
-
-      <div className='px-20 py-5'>
-        <div className='p-5 border rounded shadow-lg'>
-          <h3 className='text-2xl font-bold mb-10'>Amenities</h3>
-          <div className='flex items-center justify-center gap-10 flex-wrap'>
-            {accommodation.amenities && accommodation.amenities.length > 0 ? (
-              accommodation.amenities.map((amenity, index) => (
-                <div key={index} className='flex flex-col items-center'>
-                <p>{amenityIcons[amenity] || <FaShieldAlt />}</p>
-                <p>{amenity}</p>
-              </div>
-              ))
-            ) : (
-              <p>No amenities listed</p>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className='px-20 py-5'>
-        <div className='p-5 border rounded shadow-lg'>
-          <h3 className='text-2xl font-bold'>Food Details</h3>
-          <p>Included: {accommodation.food?.included ? 'Yes' : 'No'}</p>
-          {accommodation.food?.included && (
-            <>
-              <p>Type: {accommodation.food.type}</p>
-              <p>Meals per Day: {accommodation.food.mealFrequency}</p>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className='px-20 py-5'>
-        <div className='p-5 border rounded shadow-lg'>
-          <h3 className='text-2xl font-bold'>Room Details</h3>
-          <p>Seater: {accommodation.roomDetails?.seater}</p>
-          <p>
-            Attached Bathroom:{' '}
-            {accommodation.roomDetails?.attachedBathroom ? 'Yes' : 'No'}
-          </p>
-        </div>
-      </div>
     </div>
+    
   )
 }
 

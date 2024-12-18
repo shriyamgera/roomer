@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 body{
-    margin: 10px;
     text-align: center;
+    background: radial-gradient(at left top, #f6fbff, #d2e6f6);
+    background-repeat: no-repeat;
+    height: 100%;
 }
+
+.glassmorphism{
+    @apply bg-opacity-30 backdrop-blur-lg
+  }

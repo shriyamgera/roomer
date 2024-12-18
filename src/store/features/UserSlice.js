@@ -18,9 +18,14 @@ const userSlice = createSlice({
         },
         insertWishlist: (state, action) => {
             state.wishlist = action.payload
+        },
+        clearUser: (state)=>{
+            state.authenticated = false
+            state.name = ''
+            state.wishlist = []
         }
     }
 })
 
-export const {insertUser, insertWishlist, setAuthenticated} = userSlice.actions
+export const {insertUser, insertWishlist, setAuthenticated, clearUser} = userSlice.actions
 export default userSlice.reducer

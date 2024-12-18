@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt'
 import User from '../model/user.js'
+import env from 'dotenv'
+env.config()
 
 const signup = async(req, res)=>{
 
@@ -14,7 +16,7 @@ const signup = async(req, res)=>{
         }
         const userModel = new User({name, email, password})
 
-        userModel.password = await bcrypt.hash(password, 10)
+        userModel.password = await bcrypt.hash(password, process.env.SALT)
         await userModel.save()
         res.status(200).json({message: "User Created", success:true})
     } catch (error) {

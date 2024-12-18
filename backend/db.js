@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
+import env from 'dotenv'
+env.config()
 
-const URI = 'mongodb://127.0.0.1:27017/roomer'
+const URI = process.env.MONGO_URI
 
 const connectDB = async ()=>{
     try {

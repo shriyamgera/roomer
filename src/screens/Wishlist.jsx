@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Cards from '../components/Cards'
+import Navbar from '../components/Navbar'
 
 const Wishlist = () => {
   const wishlist = useSelector(state=> state.user.wishlist)
@@ -17,8 +18,9 @@ const Wishlist = () => {
   
   
   return (
-    <div className='m-10 p-10'>
-      <h1>Wishlist</h1>
+    <div className='text-blue-950 h-[100vh]'>
+      <Navbar/>
+      <h1 className='font-bold text-4xl my-10'>Wishlist</h1>
     {wishlistedAccomms?.length > 0 ? <div className='flex gap-10 padding-[20px] flex-wrap justify-center'>
         {wishlistedAccomms?.map((item)=>{
             return (
