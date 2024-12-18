@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import {store} from './store/store'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Profile from "./screens/Profile";
+import Wishlist from "./screens/Wishlist";
+import AccommodationDetails from "./screens/AccommodationDetails";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ToastContainer />
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path='/wishlist' element={<Wishlist/>}/>
+            <Route path='/details/:id' element={<AccommodationDetails/>}/>
+        </Routes>
+      </BrowserRouter>
+   </Provider>
   );
 }
 
