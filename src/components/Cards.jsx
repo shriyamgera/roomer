@@ -18,7 +18,7 @@ const Cards = ({cardItem}) => {
         if(wishlist){
             wishlist?.includes(_id) ? setisWishlisted(true) : setisWishlisted(false)
         }
-    }, [wishlist])
+    }, [wishlist, _id])
     const authenticated = useSelector(state=> state.user.authenticated)
     
     const handleWishlist = useCallback(async(e) => {

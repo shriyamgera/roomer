@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaSearch, FaMale, FaFemale } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter, updateSearchText } from '../store/features/SearchSlice'

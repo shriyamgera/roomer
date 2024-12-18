@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import { Link, useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
 import api from '../config/api'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { insertUser, setAuthenticated } from '../store/features/UserSlice'
 
 const Login = () => {
