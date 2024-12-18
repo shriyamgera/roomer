@@ -1,4 +1,4 @@
-const baseAddress = 'http://localhost:4000'
+const baseAddress = 'https://roomer-6tii.vercel.app'
 const api = {
     validateToken : `${baseAddress}/validateToken`,
     details : `${baseAddress}/details`,
