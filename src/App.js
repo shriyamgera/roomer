@@ -10,7 +10,7 @@ import Wishlist from "./screens/Wishlist";
 import AccommodationDetails from "./screens/AccommodationDetails";
 import { useEffect } from "react";
 import api from "./config/api";
-import { setAuthenticated } from "./store/features/UserSlice";
+import { insertWishlist, setAuthenticated } from "./store/features/UserSlice";
 import PrivateComponent from "./components/PrivateComponent";
 import Loading from "./components/Loading";
 
@@ -32,6 +32,7 @@ function App() {
             const res = await apiData.json()
             if(res?.success){
                 dispatch(setAuthenticated(true))
+                dispatch(insertWishlist(res?.wishlist))
             }else{
                 dispatch(setAuthenticated(false))
             }
