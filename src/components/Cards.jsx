@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { insertWishlist } from '../store/features/UserSlice'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import { setLoading } from '../store/features/UtilSlice';
 
 const Cards = ({cardItem}) => {
     const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const Cards = ({cardItem}) => {
     
     const handleWishlist = useCallback(async(e) => {
         e.stopPropagation()
+        dispatch(setLoading(true))
             try {
                 const apiData = await fetch(api.wishlist,
                     {
@@ -48,6 +50,7 @@ const Cards = ({cardItem}) => {
             } catch (error) {
                 console.error(error)
             }
+            dispatch(setLoading(false))
         
     },[_id,dispatch])
 

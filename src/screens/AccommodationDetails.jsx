@@ -32,7 +32,7 @@ const AccommodationDetails = () => {
         <div className='flex items-center'>
           <img
             src={`/${accommodation.img}`}
-            alt={`${accommodation.type} image`}
+            alt={`${accommodation.type}`}
             className='rounded shadow-lg md:w-[600px] h-auto'
           />
         </div>

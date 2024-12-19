@@ -57,7 +57,7 @@ const CardsContainer = () => {
         <div className='flex gap-10 padding-[20px] flex-wrap justify-center'>
             {filterdData?.map((item)=>{
                 return (
-                    <Cards cardItem={item} />
+                    <Cards key={item?._id} cardItem={item} />
                 )
             })}
         </div>
