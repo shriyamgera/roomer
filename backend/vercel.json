@@ -14,11 +14,11 @@
   "routes": [
     {
       "src": "/accommodation",
-      "dest": "/index.html"
+      "dest": "/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/index.js"
     }
   ]
 }
