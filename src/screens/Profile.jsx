@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router'
 import Navbar from '../components/Navbar'
 import { useDispatch } from 'react-redux'
 import { clearUser, setAuthenticated } from '../store/features/UserSlice'
+import { setLoading } from '../store/features/UtilSlice'
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -17,10 +18,12 @@ const Profile = () => {
     const handleLogOut = () =>{
         localStorage.removeItem('token')
         localStorage.removeItem('username')
+        dispatch(setLoading(true))
         dispatch(setAuthenticated(false))
         dispatch(clearUser())
         setTimeout(() => {
             navigate('/')
+            dispatch(setLoading(false))
         }, 1000)
     }
     

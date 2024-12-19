@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import api from '../config/api'
 import { useDispatch } from 'react-redux'
 import { insertUser, setAuthenticated } from '../store/features/UserSlice'
+import { setLoading } from '../store/features/UtilSlice'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const Login = () => {
 
   const handleSubmit = async(e) =>{
     e.preventDefault()
+    dispatch(setLoading(true))
     if(loginDetails.email && loginDetails.password){
       try {
         const apiData = await fetch(api.login,{
@@ -44,15 +46,17 @@ const Login = () => {
           toast.success(res?.message)
           setTimeout(() => {
             navigate('/')
+            dispatch(setLoading(false))
           }, 1000);
         }else{
           if(res?.error?.details){
             toast.error(res?.error?.details?.[0]?.message)
+            dispatch(setLoading(false))
         }else{
             toast.error(res?.message)
+            dispatch(setLoading(false))
         }
         }
-
       } catch (error) {
         toast.error(error)
       }

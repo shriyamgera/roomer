@@ -26,7 +26,7 @@ const AccommodationDetails = () => {
   
 
   return (
-    <div className='text-blue-950'>
+    <div className='text-blue-950 min-h-[100vh] '>
       <Navbar />
       <div className='flex gap-10 px-20 py-10 flex-wrap justify-center'>
         <div className='flex items-center'>

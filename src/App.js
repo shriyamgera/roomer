@@ -1,5 +1,4 @@
-import { Provider, useDispatch } from "react-redux";
-import {store} from './store/store'
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
@@ -13,8 +12,11 @@ import { useEffect } from "react";
 import api from "./config/api";
 import { setAuthenticated } from "./store/features/UserSlice";
 import PrivateComponent from "./components/PrivateComponent";
+import Loading from "./components/Loading";
 
 function App() {
+
+  const isLoading = useSelector(state=>state.util.loading)
 
   function Validate() {
   const dispatch = useDispatch()
@@ -49,7 +51,8 @@ function App() {
 }
 
   return (
-    <Provider store={store}>
+    <>
+      {isLoading && <Loading/>}      
       <ToastContainer />
       <BrowserRouter>
       <Validate/>
@@ -62,7 +65,7 @@ function App() {
             <Route path='/details/:id' element={<PrivateComponent element={<AccommodationDetails/>}/>}/>
         </Routes>
       </BrowserRouter>
-   </Provider>
+    </>
   );
 }
 
