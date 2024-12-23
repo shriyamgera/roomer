@@ -4,11 +4,12 @@
 
 body{
     text-align: center;
-    background: radial-gradient(at left top, #f6fbff, #d2e6f6);
+    background-color: rgb(254, 252, 246);
     background-repeat: no-repeat;
-    height: 100%;
+    /* height: 100%; */
+    @apply font-coolvetica;
 }
 
 .glassmorphism{
-    @apply bg-opacity-30 backdrop-blur-lg
+    @apply bg-opacity-20 backdrop-blur-2xl
   }

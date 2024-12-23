@@ -10,8 +10,8 @@ import { setLoading } from '../store/features/UtilSlice'
 const Login = () => {
   const dispatch = useDispatch()
 
-  const labelClassName = 'text-start mt-3 font-bold mb-1'
-  const inputClass = 'bg-transparent outline-none border-b border-blue-950'
+  const labelClassName = 'text-start mt-3 font-bold mb-1 text-yellow-300'
+  const inputClass = 'bg-transparent outline-none border-b-[1px] text-white placeholder:text-yellow-100'
 
   const [loginDetails, setloginDetails] = useState({})
   const navigate = useNavigate()
@@ -65,18 +65,20 @@ const Login = () => {
     }
   }
   return (
-    <div className='h-[100vh]'>
+    <div className='bg-bannerImg bg-no-repeat bg-cover '>
+      <div className='bg-blackOverlay h-screen '>
       <Navbar/>
       <div className='flex flex-col items-center'>
-        <h1 className='text-5xl font-bold text-blue-950 mt-5'>LogIn</h1>
+        <h1 className='text-5xl font-bold text-yellow-300 mt-5'>Log In</h1>
         <form className='flex flex-col bg-blue-200 w-fit p-5 mt-10 glassmorphism rounded shadow-lg my-5'>
           <label className={labelClassName}>Email</label>
           <input type="email" placeholder='Enter Email' name='email' value={loginDetails.email || ''} onChange={handleChange} className={inputClass}></input>
           <label className={labelClassName}>Password</label>
           <input type='password' placeholder='Enter Password' name='password' value={loginDetails.password || ''} onChange={handleChange} className={inputClass}></input>
-          <button type='submit'  onClick={handleSubmit} className='mt-5 bg-blue-900 text-white p-2'>Login</button>
-          <p className='mt-5'>Don't have an account? <span className='underline'><Link to={'/signup'}>Sign Up</Link></span></p>
+          <button type='submit'  onClick={handleSubmit} className='mt-5 bg-yellow-500 text-white p-2  rounded-md  '>Login</button>
+          <p className='mt-5 text-white'>Don't have an account? <span className='underline text-yellow-200'><Link to={'/signup'}>Sign Up</Link></span></p>
         </form>
+      </div>
       </div>
     </div>
   )

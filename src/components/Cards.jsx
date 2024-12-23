@@ -6,6 +6,7 @@ import { insertWishlist } from '../store/features/UserSlice'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { setLoading } from '../store/features/UtilSlice';
+import { HiLocationMarker } from 'react-icons/hi';
 
 const Cards = ({cardItem}) => {
     const dispatch = useDispatch()
@@ -56,9 +57,10 @@ const Cards = ({cardItem}) => {
 
     const handleCardClick =useCallback(()=>{
         if(authenticated){
-            console.log(cardItem);
+            setTimeout(() => {
+                navigate(`/details/${_id}`, {state: cardItem})
+            }, 100);
             
-            navigate(`/details/${_id}`, {state: cardItem})
         }else{
             toast(<h1 className='text-xl p-5'>Please Login first to check details of this {type}.</h1>,{
                 position:'top-center',
@@ -68,29 +70,28 @@ const Cards = ({cardItem}) => {
     },[authenticated, cardItem, navigate, _id, type])
     
   return (
-    <div className='w-[70%] md:w-[30%] lg:w-[20%] lg:h-[250px] h-[300px] md:h-[220px] bg-cover bg-center rounded shadow-lg flex flex-col justify-between hover:scale-110 duration-150 text-white' 
+    <div className='w-[80%] h-[200px] sm:w-[70%] md:w-[40%] md:h-[220px] xl:w-[30%] 2xl:h-[350px] bg-cover bg-center rounded-2xl shadow-lg flex flex-col justify-between hover:scale-110 duration-150 text-white' 
     style={{backgroundImage:`url(${img})`}}
     onClick={handleCardClick}
     >
-
-        <div className='w-full h-[15%] bg-blue-800 flex justify-between p-2 items-center rounded glassmorphism'>
-            <div className='flex gap-3 items-center'>
+<div className='flex flex-col justify-between h-full w-full'>
+        <FaHeart className='hover:scale-150 duration-150 m-5 mt-3 text-xl self-end ' onClick={handleWishlist} fill={isWishlisted ? "red" : "white"}/>
+        <div className='h-[30%] bg-white glassmorphism m-2 rounded-2xl px-2 flex items-center justify-between'>
+        <div>
+            <p className='font-bold'>{name}</p>
+            <div className='flex items-center gap-2'><HiLocationMarker/> {location}</div>
+        </div>
+        <div className='text-2xl font-semibold flex flex-col items-center'>
         <div className='flex'>
-                {gender.includes('Male') && <FaMale className='text-blue-900 text-xl'/>} 
-                {gender.includes('Female') && <FaFemale className='text-pink-400 text-xl'/>}
+                {gender.includes('Male') && <FaMale className='text-blue-400'/>} 
+                {gender.includes('Female') && <FaFemale className='text-pink-400'/>}
             </div>
-            <div>
+            <div className='text-lg'>
                 {type}
             </div>
-            </div>
-            <div>
-                <FaHeart className='hover:scale-150 duration-150' onClick={handleWishlist} fill={isWishlisted ? "red" : "white"}/>
-            </div>
         </div>
-        <div className='w-full h-[30%] bg-blue-800 flex items-center justify-center rounded glassmorphism'>
-            {name}
-            <br/>
-            {location}
+        
+        </div>
         </div>
     </div>
   )

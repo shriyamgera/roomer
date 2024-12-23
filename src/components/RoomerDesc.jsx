@@ -2,8 +2,8 @@ import React from 'react'
 
 const RoomerDesc = () => {
   return (
-    <div className='md:text-3xl md:my-10 my-3 font-bold text-blue-950'>
-    <p>Stay away from Rumours. Join <b className='text-blue-800'>Roomer</b></p>
+    <div className='text-3xl md:my-10 my-3 font-bold text-white'>
+    <p>Stay away from Rumours. Join <span className='text-yellow-300 md:text-5xl'>Roomer</span></p>
     </div>
   )
 }

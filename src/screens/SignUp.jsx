@@ -7,8 +7,8 @@ import { setLoading } from '../store/features/UtilSlice'
 import { useDispatch } from 'react-redux'
 
 const SignUp = () => {
-    const labelClassName = 'text-start mt-3 font-bold mb-1 text-blue-950'
-    const inputClass = 'bg-transparent outline-none border-b border-blue-950'
+  const labelClassName = 'text-start mt-3 font-bold mb-1 text-yellow-300'
+  const inputClass = 'bg-transparent outline-none border-b-[1px] text-white placeholder:text-yellow-100'
     const [signUpDetails, setsignUpDetails] = useState({})
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -63,9 +63,11 @@ const SignUp = () => {
     }
   return (
     <div className='h-[100vh]'>
+            <div className='bg-bannerImg bg-no-repeat bg-cover '>
+            <div className='bg-blackOverlay h-screen '>
         <Navbar/>
         <div className='flex flex-col items-center'>
-        <h1 className='text-5xl font-bold text-blue-950 mt-5'>SignUp</h1>
+        <h1 className='text-5xl font-bold text-yellow-300 mt-5'>Sign Up</h1>
         <form className='flex flex-col bg-blue-200 w-fit p-5 mt-10 glassmorphism rounded shadow-lg my-5'>
             <label className={labelClassName}>Name</label>
             <input autoFocus type='text' placeholder='Enter Name' name='name' onChange={handleChange} value={signUpDetails.name || ''} className={inputClass}></input>
@@ -73,10 +75,11 @@ const SignUp = () => {
             <input type="email" placeholder='Enter Email' name='email' onChange={handleChange} value={signUpDetails.email || ''} className={inputClass}></input>
             <label className={labelClassName}>Password</label>
             <input type='password' placeholder='Enter Password' name='password' onChange={handleChange} value={signUpDetails.password || ''} className={inputClass}></input>
-            <button type='submit' className='mt-5 bg-blue-900 text-white p-2' onClick={handleSubmit}>Create Account</button>
-            <p className='mt-5'>Already have an account? <span className='underline'><Link to={'/login'}>Login</Link></span></p>
+            <button type='submit' className='mt-5 bg-yellow-500 text-white p-2 rounded-md' onClick={handleSubmit}>Create Account</button>
+            <p className='mt-5 text-white'>Already have an account? <span className='underline text-yellow-200'><Link to={'/login'}>Login</Link></span></p>
         </form>
         </div>
+        </div></div>
     </div>
   )
 }

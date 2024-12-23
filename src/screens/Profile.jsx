@@ -29,16 +29,21 @@ const Profile = () => {
     
   return (
     <div className='h-[100vh]'>
+          <div className='bg-bannerImg bg-no-repeat bg-cover '>
+          <div className='bg-blackOverlay h-screen '>
     <Navbar/>
-    <div className='flex justify-center flex-col gap-10 text-blue-950 items-center'>
-        <h1 className='font-bold text-4xl mt-10'>Welcome <span className='text-blue-800'>{userDetails}</span></h1>
+    <div className='flex items-center justify-center  mx-5 font-coolvetica'>
+    <div className='flex justify-center flex-col gap-10 text-yellow-950 items-center bg-black glassmorphism w-fit p-5 rounded-3xl'>
+        <h1 className='font-bold text-4xl mt-10'>Welcome <span className='text-yellow-500'>{userDetails}</span></h1>
         <div className='flex justify-center items-center  w-64 gap-5 m-10'>
           <Link to={'/wishlist'}><h1 className='font-bold text-2xl text-red-500 flex justify-center items-center gap-4'><span><FaHeart fill='red'/></span>Wishlist</h1></Link>
-          <button className='bg-blue-900 text-white p-2' onClick={handleLogOut}>Logout</button>
+          <button className='bg-yellow-500 rounded-xl font-bold text-white p-2' onClick={handleLogOut}>Logout</button>
         </div>
     </div>
     </div>
-    
+    </div>
+    </div>
+</div>    
   )
 }
 
